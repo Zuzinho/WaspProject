@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyProductAttribute("WaspProject")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WaspProject")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
-[assembly: System.Runtime.Versioning.TargetPlatformAttribute("iOS16.1")]
+[assembly: System.Runtime.Versioning.TargetPlatformAttribute("iOS16.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("iOS14.2")]
 
 // Создано классом WriteCodeFragment MSBuild.
