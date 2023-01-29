@@ -8,7 +8,7 @@ namespace WaspProject.Model
         // Название фильма
         public string Name { get; private set; }
         //Жанр фильма (все в enum)
-        public Genre Genre { get;private set; }
+        public string Genre { get;private set; }
         // Описание фильма
         public string Description { get; private set; }
         //Id кинотеатра, в котором идет данный фильм
@@ -18,7 +18,7 @@ namespace WaspProject.Model
         // Путь к аватрке фильма (просто имя фильма без пробелов и знаков)
         public string AvatarPath { get; private set; }
 
-        public Film(int id, string name, Genre genre, string description, int cinemaId, ObservableCollection<Session> sessions, string fileName): base(id)
+        public Film(int id, string name, string genre, string description, int cinemaId, ObservableCollection<Session> sessions, string fileName): base(id)
         {
             Name = name;
             Genre = genre;
