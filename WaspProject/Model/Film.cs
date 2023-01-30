@@ -15,17 +15,17 @@ namespace WaspProject.Model
         public int CinemaId { get; private set; }
         // Список сеансов
         public ObservableCollection<Session> Sessions { get; private set; }
-        // Путь к аватрке фильма (просто имя фильма без пробелов и знаков)
+        // Путь к аватрке фильма (создается автоматически)
         public string AvatarPath { get; private set; }
 
-        public Film(int id, string name, string genre, string description, int cinemaId, ObservableCollection<Session> sessions, string fileName): base(id)
+        public Film(int id, string name, string genre, string description, int cinemaId, ObservableCollection<Session> sessions): base(id)
         {
             Name = name;
             Genre = genre;
             Description = description;
             CinemaId = cinemaId;
             Sessions = sessions;
-            AvatarPath = Patterns.GetAvatarsFilePath(fileName);
+            AvatarPath = Patterns.GetAvatarsFilePath(id, cinemaId);
         }
 
         public override string ToString()
