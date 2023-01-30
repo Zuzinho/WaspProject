@@ -18,9 +18,13 @@
         {
             return s_directoryPath + "Films\\" + "Cinema" + id + ".json";
         }
-        public static string GetAvatarsFilePath(string fileName)
+        public static string GetIdsFilePath()
         {
-            return "\\Resources\\Images\\Avatars\\" + fileName;
+            return s_directoryPath + "Ids.json"; 
+        }
+        public static string GetAvatarsFilePath(int id, int cinemaId)
+        {
+            return $"\\Resources\\Images\\Avatars\\avatar{cinemaId}_{id}";
         }
     }
 }
