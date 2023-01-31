@@ -38,8 +38,9 @@ namespace WaspProject.DataBase
                     );
                 return objects;
             }
-            catch
+            catch(Exception ex)
             {
+                string msg = ex.Message;
                 return null;
             }
         }

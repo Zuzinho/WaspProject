@@ -7,7 +7,7 @@ namespace WaspProject.DataBase
     public class DataBaseWriter: DataBase
     {
         // Первый элемент - last id для фильмов
-        private static readonly List<int> s_objectsLastId = JsonSerializer.Deserialize<List<int>>(File.ReadAllText(Patterns.GetIdsFilePath())); 
+        private static List<int> s_objectsLastId = JsonSerializer.Deserialize<List<int>>(File.ReadAllText(s_idsFilePath)); 
 
 
         public static int AddCinema(Cinema cinema, bool needCheck = true)
@@ -58,7 +58,17 @@ namespace WaspProject.DataBase
         }
 
 
-        private static bool AddObject(string filePath, AbstractCinemaObject cinemaObject, bool needCheck)
+        public static void CleanDataBase()
+        {
+            for(int cinemaId = 1;cinemaId <= s_objectsLastId[0];cinemaId++) File.Delete(Patterns.GetFilmsFilePath(cinemaId));
+            CleanFile(s_cinemasFilePath);
+            s_objectsLastId = new() { 0 };
+            using var streamWriter = new StreamWriter(new FileStream(s_idsFilePath, FileMode.Create));
+            streamWriter.Write("[0]");
+        }
+
+
+        private static bool AddObject<T>(string filePath, T cinemaObject, bool needCheck) where T: AbstractCinemaObject
         {
             if (needCheck && DataBaseChecker.ContainsSameId(filePath, cinemaObject.Id)) return false;
             string jsonString = JsonSerializer.Serialize(cinemaObject);
@@ -76,7 +86,7 @@ namespace WaspProject.DataBase
 
         private static void ReWriteIdsFile()
         {
-            using var streamWriter = new StreamWriter(new FileStream(Patterns.GetIdsFilePath(),FileMode.Open));
+            using var streamWriter = new StreamWriter(new FileStream(s_idsFilePath,FileMode.Open));
             string jsonString = JsonSerializer.Serialize(s_objectsLastId);
             streamWriter.Write(jsonString);
         }

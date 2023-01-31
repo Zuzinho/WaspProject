@@ -3,6 +3,7 @@
     public abstract class DataBase
     {
         protected static readonly string s_cinemasFilePath = Patterns.GetCinemasFilePath();
+        protected static readonly string s_idsFilePath = Patterns.GetIdsFilePath();
         protected static readonly char s_separator = '\n';
 
 
